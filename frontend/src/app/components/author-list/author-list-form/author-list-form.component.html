@@ -1,0 +1,31 @@
+<form (ngSubmit)="onSubmitSend()" [formGroup]="itemForm">
+    <input 
+        type="hidden" 
+        formControlName="_id"
+    />
+    <mat-form-field appearance="fill">
+        <mat-label>Name</mat-label>
+        <input 
+            matInput 
+            placeholder="Name"
+            formControlName="name" 
+            required
+        >
+        <mat-error *ngIf="this.itemForm.get('name')">{{getErrorMessageFn('name')}}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Surname</mat-label>
+        <input 
+            matInput 
+            placeholder="Surname"
+            formControlName="surname" 
+            required
+        >
+        <mat-error *ngIf="this.itemForm.get('surname')">{{getErrorMessageFn('surname')}}</mat-error>
+    </mat-form-field>
+
+    <div class="button-container">
+        <button type="submit" mat-flat-button color="primary">Save</button>
+    </div>
+</form>

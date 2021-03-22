@@ -1,0 +1,36 @@
+<h2 mat-dialog-title>Search</h2>
+<mat-dialog-content class="mat-typography">
+    <mat-form-field appearance="fill" style="display: block">
+        <mat-label>Search By</mat-label>
+        <mat-select 
+            [(value)]="searchType"
+            required
+        >
+            <mat-option 
+                [value]="'name'"
+            >
+                Name
+            </mat-option>
+            
+            <mat-option 
+                [value]="'surname'"
+            >
+                Surname
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    
+    <mat-form-field appearance="fill">
+        <mat-label>Parameter</mat-label>
+        <input 
+            matInput 
+            placeholder="Parameter"
+            required
+            [(ngModel)]="searchParameter"
+        >
+    </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Close</button>
+  <button mat-button [mat-dialog-close]="{searchType: searchType, searchParameter: searchParameter}" cdkFocusInitial>Find</button>
+</mat-dialog-actions>

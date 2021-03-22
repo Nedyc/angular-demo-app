@@ -1,0 +1,50 @@
+<form (ngSubmit)="onSubmitSend()" [formGroup]="itemForm">
+    <input 
+        type="hidden" 
+        formControlName="_id"
+    />
+    <mat-form-field appearance="fill" style="display: block">
+        <mat-label>Author</mat-label>
+        <mat-select
+            formControlName="author" 
+            required
+        >
+            <mat-option 
+                [value]="''"
+            >
+               
+            </mat-option>
+            <mat-option *ngFor="let author of authorList" [value]="author">{{author.surname}} {{author.name}}</mat-option>
+        </mat-select>
+
+        <mat-error *ngIf="this.itemForm.get('author')">{{getErrorMessageFn('author')}}</mat-error>
+    </mat-form-field>
+
+    <div class="button-container">
+        <button 
+            id="add-button"
+            mat-raised-button 
+            aria-label="Add button"
+            [routerLink]="['/author-list']"
+        >
+            <mat-icon>add</mat-icon>
+            Add author
+        </button>
+    </div>
+
+
+    <mat-form-field appearance="fill">
+        <mat-label>Title</mat-label>
+        <input 
+            matInput 
+            placeholder="Title"
+            formControlName="title" 
+            required
+        >
+        <mat-error *ngIf="this.itemForm.get('title')">{{getErrorMessageFn('title')}}</mat-error>
+    </mat-form-field>
+
+    <div class="button-container">
+        <button type="submit" mat-flat-button color="primary">Save</button>
+    </div>
+</form>

@@ -1,0 +1,50 @@
+<div id="bottom-bar" class="full-width">
+    <button 
+        mat-fab 
+        color="warn" 
+        aria-label="Close button"
+        (click) = onSettingsCloseClick()
+        *ngIf="areSettingsOpen"
+    >
+        <mat-icon>close</mat-icon>
+    </button>
+
+    <button 
+        mat-fab 
+        color="primary" 
+        aria-label="Add button"
+        (click) = onElementAddClick()
+        *ngIf="!isCreatingOrEditingEl"
+    >
+        <mat-icon>add</mat-icon>
+    </button>
+
+    <button 
+        mat-fab 
+        color="warn" 
+        aria-label="Close button"
+        (click) = onCreateEditCloseClick()
+        *ngIf="isCreatingOrEditingEl"
+    >
+        <mat-icon>close</mat-icon>
+    </button>
+
+    <button 
+        mat-fab 
+        color="warn" 
+        [disabled] = "!deletedArray.length || isCreatingOrEditingEl || areSettingsOpen" 
+        aria-label="Delete button"
+        (click) = openDeleteDialog()
+    >
+        <mat-icon>delete</mat-icon>
+    </button>
+
+    <button 
+        mat-fab 
+        color="primary" 
+        aria-label="Search button"
+        (click) = openSearchBtnClick()
+    >
+        <mat-icon>search</mat-icon>
+    </button>
+</div>

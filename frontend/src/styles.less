@@ -1,0 +1,76 @@
+/* You can add global styles to this file, and also import other style files */
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+body{background-color: lightgrey}
+
+app-root{
+    display: block;
+    min-height: 100vh;
+    background-color: white;
+    margin: auto;
+
+    .page{
+        padding-top: 4em;
+        padding-bottom: 2em;
+        height: calc(100vh - 170px);
+        overflow-y: auto;
+
+        .title{
+            padding-left: 1em;
+            margin-top: 2em;
+        }
+    }
+
+    .mat-form-field{
+        display: block;
+    }
+
+    .cursor-pointer{
+        cursor: pointer;
+    }
+
+    .full-width{
+        width: 100%;
+    }
+
+    .button-container{
+        text-align: right;
+        
+        button{
+            text-align: right;
+            margin: auto;
+        }
+    }
+
+    .d-flex{
+        display: flex;
+    }
+
+    #searchBy{
+        display: flex;
+        justify-content: space-between;
+    }
+
+    app-list{
+        mat-checkbox {
+            margin-right: 10px;
+        }
+    }
+
+    @media (min-width: 768px) and (max-width: 1201px) {
+        width: 60%;
+
+        .full-width{
+            width: 60%;
+        }
+    }
+    
+    @media (min-width: 1200px) {
+        width: 40%;
+
+        .full-width{
+            width: 40%;
+        }
+    }
+}

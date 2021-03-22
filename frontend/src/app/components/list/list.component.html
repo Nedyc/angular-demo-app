@@ -1,0 +1,42 @@
+<app-sorter 
+    [orderList] = "orderList"
+    (onOrderChange) = "onOrderSelected($event)"
+></app-sorter>
+
+<mat-list role="list" *ngIf="itemTemplate && list && list.length">
+    <mat-list-item 
+        role="listitem"
+        *ngFor="let item of list; let i = index"
+    >
+        <mat-card>
+            <div class="d-flex">
+                <mat-checkbox 
+                    (change)="onCheckClick($event, item._id)"
+                ></mat-checkbox>
+                
+                <ng-container 
+                    *ngTemplateOutlet="itemTemplate; context: { data : item }"
+                >
+                </ng-container>
+            </div>
+    
+            <div *ngIf="hasEditBtn">
+                <button 
+                    mat-icon-button 
+                    aria-label="Edit icon" 
+                    title="Modifica"
+                    color="accent"
+                    (click)="onElementEditClick(item)"
+                >
+                    <mat-icon>create</mat-icon>
+                </button>
+            </div>
+        </mat-card>
+    </mat-list-item>
+</mat-list>
+
+<mat-list role="list" *ngIf="list && !list.length">
+    <mat-list-item role="listitem">
+        <mat-card>There's no element in this list yet</mat-card>
+    </mat-list-item>
+</mat-list>

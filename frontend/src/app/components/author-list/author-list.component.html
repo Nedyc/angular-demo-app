@@ -1,0 +1,67 @@
+<app-header class="full-width"></app-header>
+
+<div class="page">
+    <app-page-header 
+        [title]="(isCreatingOrEditingEl ? (authorListService.selectedAuthor ? 'Edit' : 'Add') : 'Author List')" 
+        [icon]="(isCreatingOrEditingEl ? (authorListService.selectedAuthor ? 'create' : 'add') : 'account_box')"
+    ></app-page-header>
+
+    <mat-card *ngIf="searchBy" id="searchBy">
+        <div>
+            <div>
+                Search By:
+            </div>
+
+            <b>{{searchBy.searchType}}</b> -  
+            <span>{{searchBy.searchParameter}}</span>
+        </div>
+
+        <button 
+            mat-mini-fab 
+            aria-label="cancel icon" 
+            color="warn"
+            (click)="resetSearch()"
+        >
+            <mat-icon>cancel</mat-icon>
+        </button>
+    </mat-card>
+    
+    <app-list 
+        *ngIf="!isCreatingOrEditingEl"
+        [orderList]="orderList"
+        [list]="authorListService.authorList"
+        [itemTemplate] = "itemTemplate"
+        (onElementsChecked) = "onElementsChecked($event.isChecked, $event.id)"
+        (onOrderChange) = "onOrderChange($event)"
+        (onElementEdit) = "onElementEdit($event)"
+    ></app-list>
+
+    <div *ngIf="isCreatingOrEditingEl">
+        <mat-card>
+            <app-author-list-form
+                [itemForm]="itemForm"
+                (onSubmit)="onSubmit()"
+            ></app-author-list-form>
+        </mat-card>
+    </div>
+</div>
+
+<ng-template #itemTemplate let-data="data">
+    <div>
+        <div>
+            {{ data.name }}
+        </div>
+        <div>
+            {{ data.surname }}
+        </div>
+    </div>
+</ng-template>
+
+<app-bottom-bar 
+    [deletedArray] = "deletedArray"
+    [isCreatingOrEditingEl] = "isCreatingOrEditingEl"
+    (onElementsDelete) = "onElementsDelete()"
+    (onElementAdd) = "onElementAdd()"
+    (onCreateEditClose) = "onCreateEditClose()"
+    (openSearchDialog) = "openSearchDialog()"
+></app-bottom-bar>

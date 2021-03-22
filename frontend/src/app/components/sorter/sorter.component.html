@@ -1,0 +1,16 @@
+<mat-form-field appearance="fill">
+    <mat-label>Order by</mat-label>
+    <mat-select (selectionChange)="onOrderSelected($event)">
+        <mat-option 
+            [value]=""
+        >
+        </mat-option>
+
+        <mat-option 
+            *ngFor="let order of orderList" 
+            [value]="order.value"
+        >
+            {{order.viewValue}}
+        </mat-option>
+    </mat-select>
+</mat-form-field>

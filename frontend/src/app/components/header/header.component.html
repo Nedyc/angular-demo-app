@@ -1,0 +1,46 @@
+<mat-toolbar color="primary">
+    <span>Book list demo app</span>
+
+    <span class="spacer"></span>
+
+    <button 
+        mat-mini-fab aria-label="menu icon" 
+        [matMenuTriggerFor]="menu" 
+        id="menu_btn" 
+        color="accent"
+    >
+        <mat-icon>menu</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu" class="menu">
+        <button 
+          mat-menu-item
+          [routerLink]="['/']"
+        >
+            <mat-icon>auto_stories</mat-icon>
+            <span>Books</span>
+        </button>
+        <button 
+          mat-menu-item
+          [routerLink]="['/author-list']"
+        >
+            <mat-icon>account_box</mat-icon>
+            <span>Authors</span>
+        </button>
+    </mat-menu>
+
+    
+    <mat-menu  #userMenu="matMenu">
+        <button mat-menu-item>
+          <mat-icon>account_circle</mat-icon>
+          <span>Profilo</span>
+        </button>
+        <button mat-menu-item>
+          <mat-icon>settings</mat-icon>
+          <span>Preferenze</span>
+        </button>
+        <button mat-menu-item>
+          <mat-icon>sensor_door</mat-icon>
+          <span>Logout</span>
+        </button>
+    </mat-menu>
+  </mat-toolbar>
